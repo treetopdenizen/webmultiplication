@@ -55,6 +55,7 @@ function create_equation (f1, f2, p)
     equation.appendChild(product);
     return equation;
 }
+
 function check_answer (event)
 {
     console.log(event)
