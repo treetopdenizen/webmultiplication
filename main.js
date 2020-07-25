@@ -9,28 +9,25 @@ var start
 
 var f1, f2
 
-function random_equation()
-{  f1 = Math.floor(Math.random()*10);
-   f2 = Math.floor(Math.random()*10);
-
-    var equation = document.getElementById("equation")
-
-    if (equation) 
-    {
+function random_equation() {
+    f1 = Math.floor(Math.random()*10);
+    f2 = Math.floor(Math.random()*10);
+    var equation = document.getElementById("equation");
+    if (equation) {
         var parentNode = equation.parentNode;
-    
-        parentNode.removeChild(equation)
+        parentNode.removeChild(equation);
     }
-document.body.appendChild(create_equation(f1,f2,f1*f2))
-document.getElementById('answer').addEventListener("keydown", check_answer)
-document.getElementById("answer").focus();
-
+    var flexbox = document.getElementById("flexbox");
+    flexbox.appendChild(create_equation(f1,f2,f1*f2));
+    document.getElementById("answer").addEventListener("keydown", check_answer)
+    document.getElementById("answer").focus();
 }
+
 function create_equation (f1, f2, p)
 {
     start = new Date()
     var equation = document.createElement("div");
-    equation.setAttribute("id", "equation")
+    equation.setAttribute("id","equation");
     equation.setAttribute("class","equation");
     var factor1 = document.createElement("div");
     factor1.setAttribute("class","factor1");
@@ -58,7 +55,6 @@ function create_equation (f1, f2, p)
     equation.appendChild(product);
     return equation;
 }
-
 function check_answer (event)
 {
     console.log(event)
@@ -70,20 +66,14 @@ function check_answer (event)
         if (f1*f2 === parseInt(x))
         {
             console.log("That is Correct")
-        
         }
         else
         {
             console.log("That is wrong")
-            
         }
         var stop = new Date()
         console.log(stop-start)
-        random_equation()
+        random_equation();
     }
-
-
 }
-
 random_equation();
-

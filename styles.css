@@ -3,6 +3,10 @@
     background-color:red;
     width: 30px;
 }
+.flexboxclass {
+    display: flex;
+    justify-content: center;
+}
 .factor2 {
     display:inline-block;
     background-color:blue;
@@ -28,12 +32,11 @@
 }
 .product {
     width:120px;
-    font-size: 32pt;
     text-align:right;
+    font-size: 32pt;
     background-color: purple;
 }
 .equation {
-    font-size: 32pt;
     display:inline-block;
-
+    font-size: 32pt;
 }
