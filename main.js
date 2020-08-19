@@ -9,9 +9,24 @@ var start
 
 var f1, f2
 
+var pairsGroup = {
+    "Fives" : [[2,5],[3,5], [4,5], [5,5], [5,2]],
+    "Sixes" : [[0,6],[1,6],[2,6],[3,6]]
+};
+
+var sessionObject = {
+    problemsAsked: []
+}
+
 function random_equation() {
-    f1 = Math.floor(Math.random()*10);
-    f2 = Math.floor(Math.random()*10);
+    //f1 = Math.floor(Math.random()*10);
+    //f2 = Math.floor(Math.random()*10);
+    var group = pairsGroup["Fives"];
+    var pair = group[Math.floor(Math.random()*group.length)];
+    var randomSelection = Math.floor(Math.random()*2);
+    f1 = pair[randomSelection];
+    f2 = pair[(randomSelection+1)%2];
+    console.log(f1);
     var equation = document.getElementById("equation");
     if (equation) {
         var parentNode = equation.parentNode;
@@ -73,7 +88,11 @@ function check_answer (event)
             console.log("That is wrong")
         }
         var stop = new Date()
-        console.log(stop-start)
+        sessionObject.problemsAsked.push({
+            "fact": [f1,f2],
+            "answer": parseInt(x),
+            "time": stop-start
+        })
         random_equation();
     }
 }
