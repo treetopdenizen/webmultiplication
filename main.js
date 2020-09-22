@@ -18,15 +18,18 @@ var sessionObject = {
     problemsAsked: []
 }
 
+var state = {
+    "selectedGroup": "Fives"
+}
+
 function random_equation() {
     //f1 = Math.floor(Math.random()*10);
     //f2 = Math.floor(Math.random()*10);
-    var group = pairsGroup["Fives"];
+    var group = pairsGroup[state["selectedGroup"]];
     var pair = group[Math.floor(Math.random()*group.length)];
     var randomSelection = Math.floor(Math.random()*2);
     f1 = pair[randomSelection];
     f2 = pair[(randomSelection+1)%2];
-    console.log(f1);
     var equation = document.getElementById("equation");
     if (equation) {
         var parentNode = equation.parentNode;
@@ -73,11 +76,9 @@ function create_equation (f1, f2, p)
 
 function check_answer (event)
 {
-    console.log(event)
     if (event.key === "Enter")
     {
         x = document.getElementById("answer").value
-        console.log(x)
 
         if (f1*f2 === parseInt(x))
         {
@@ -96,4 +97,32 @@ function check_answer (event)
         random_equation();
     }
 }
-random_equation();
+
+function generate_selections() {
+    var selection = document.createElement("select");
+    for (const group in pairsGroup) {
+        var option = document.createElement("option");
+        option.value=group;
+        option.textContent = group;
+        selection.appendChild(option);
+    }
+    selection.onchange = selection_change;
+    var containingDiv = document.getElementById("problemSelection");
+    containingDiv.appendChild(selection);
+}
+
+function selection_change(event) {
+    // update state
+    state["selectedGroup"] = event.target.value;
+    // update equation
+    random_equation();
+}
+
+function setup() {
+    // Display Selection box
+    generate_selections();
+    // Populate initial equation
+    random_equation();
+}
+
+setup();
