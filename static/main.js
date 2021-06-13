@@ -74,7 +74,7 @@ function create_equation (f1, f2, p)
     return equation;
 }
 
-function check_answer (event)
+function check_answer (event, stats)
 {
     if (event.key === "Enter")
     {
